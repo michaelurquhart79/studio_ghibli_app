@@ -1,7 +1,8 @@
 <template lang="html">
   <div>
-    <h1>Hello Mike</h1>
+    <h1>Studio Ghibli Films App</h1>
 
+    <router-view :films="films"></router-view>
 
   </div>
 </template>
@@ -11,16 +12,22 @@ export default {
   name: 'app',
   data() {
     return {
-      filmsArray: [],
+      films: [],
     }
   },
   mounted() {
     fetch("https://ghibliapi.herokuapp.com/films")
     .then(res => res.json())
-    .then(data => this.filmsArray = data);
+    .then(data => this.films = data);
   }
 }
 </script>
 
 <style lang="css" scoped>
+
+@import url(https://fonts.googleapis.com/css?family=Roboto);
+
+div {
+  font-family: Roboto, sans-serif;
+}
 </style>
