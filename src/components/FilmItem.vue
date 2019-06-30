@@ -1,8 +1,9 @@
 <template lang="html">
   <div>
       <li>{{film.title}}, Released: {{film.release_date}}</li>
-      <button v-if="!onWatchedView" 
+      <button v-if="!onWatchedView"
       v-on:click = "handleWLClick">Add to watched list</button>
+      <button v-on:click="displayInfo">Click for more details</button>
     <hr>
   </div>
 </template>
@@ -15,6 +16,9 @@ export default {
   methods: {
     handleWLClick() {
       eventBus.$emit("wlbutton-clicked", this.film)
+    },
+    displayInfo() {
+      eventBus.$emit('film-selected', this.film)
     }
   },
   computed: {

@@ -3,7 +3,7 @@
     <nav-bar></nav-bar>
     <sg-header title="Studio Ghibli Films App"></sg-header>
 
-    <router-view :films="films" :watchedFilms="watchedFilms"></router-view>
+    <router-view :films="films" :watchedFilms="watchedFilms" :people="people" :selectedPerson="selectedPerson" :species="species"></router-view>
 
   </div>
 </template>
@@ -17,15 +17,27 @@ export default {
   data() {
     return {
       films: [],
-      watchedFilms: []
+      watchedFilms: [],
+      people: [],
+      selectedPerson: null,
+      species: []
     }
   },
   mounted() {
     fetch("https://ghibliapi.herokuapp.com/films")
     .then(res => res.json())
     .then(data => this.films = data);
+    fetch("https://ghibliapi.herokuapp.com/people/")
+    .then(res => res.json())
+    .then(data => this.people = data);
+    fetch("https://ghibliapi.herokuapp.com/species")
+    .then(res => res.json())
+    .then(data => this.species = data);
     eventBus.$on("wlbutton-clicked", (film) => {
       this.watchedFilms.push(film);
+    })
+    eventBus.$on('person-selected', (person) => {
+      this.selectedPerson = person;
     })
   },
   components:{
