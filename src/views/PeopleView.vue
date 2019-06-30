@@ -1,7 +1,8 @@
 <template lang="">
   <div>
     <people-select :people="people"></people-select>
-    <people-detail :selectedPerson="selectedPerson" :species="species"></people-detail>
+    <people-detail :selectedPerson="selectedPerson" :species="species"
+    :personsFilms="personsFilms"></people-detail>
 
   </div>
 
@@ -13,7 +14,7 @@ import PeopleDetail from '@/components/PeopleDetail'
 
 export default {
   name: 'people-view',
-  props: ['films', 'people', 'selectedPerson', 'species'],
+  props: ['films', 'people', 'selectedPerson', 'species', 'personsFilms'],
   components: {
     'people-select': PeopleSelect,
     'people-detail': PeopleDetail

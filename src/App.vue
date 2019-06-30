@@ -3,7 +3,8 @@
     <nav-bar></nav-bar>
     <sg-header title="Studio Ghibli Films App"></sg-header>
 
-    <router-view :films="films" :watchedFilms="watchedFilms" :people="people" :selectedPerson="selectedPerson" :species="species"></router-view>
+    <router-view :films="films" :watchedFilms="watchedFilms" :people="people" :selectedPerson="selectedPerson" :species="species"
+    :personsFilms="personsFilms"></router-view>
 
   </div>
 </template>
@@ -20,7 +21,8 @@ export default {
       watchedFilms: [],
       people: [],
       selectedPerson: null,
-      species: []
+      species: [],
+      personsFilms: []
     }
   },
   mounted() {
@@ -38,6 +40,13 @@ export default {
     })
     eventBus.$on('person-selected', (person) => {
       this.selectedPerson = person;
+      this.personsFilms=[];
+      this.selectedPerson.films.forEach(film =>
+        fetch(film)
+        .then(res => res.json())
+        .then(data => (this.personsFilms).push(data))
+      )
+
     })
   },
   components:{

@@ -20,11 +20,20 @@ export default {
   data () {
     return {
       selectedPerson: null,
+      // personsFilms: []
     }
   },
   methods: {
     handleSelect() {
-      eventBus.$emit('person-selected', this.selectedPerson)
+      eventBus.$emit('person-selected', this.selectedPerson);
+
+      // this.personsFilms=[];
+      // this.selectedPerson.films.forEach(film =>
+      //   fetch(film)
+      //   .then(res => res.json())
+      //   .then(data => (this.personsFilms).push(data))
+      // )
+
     }
   },
 }
