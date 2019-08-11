@@ -1,5 +1,11 @@
 # studio_ghibli_app
 
+Simple app allow users to track studio ghibli films watched.
+Project is a work in progress.
+Requires styling to be added.
+Requires additional logic (conditional rendering?) to be implemented to prevent the same film being selected muliple times.
+
+
 ## Project setup
 ```
 npm install
